@@ -26,7 +26,7 @@ resource "google_compute_subnetwork" "subnet" {
 
 }
 
-#Peering between Q6 Cyber vpc and ES Portal K8s vpc
+#Peering between OLD VMs vpc and GKE K8s vpc
 resource "google_compute_network_peering" "to-vms-vpc" {
   name         = "to-vms-vpc-vpc-network"
   network      = google_compute_network.vpc-gke.id
