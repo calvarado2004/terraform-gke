@@ -93,7 +93,7 @@ resource "google_container_node_pool" "master-pool" {
     # 6 CPUs, 12GB of RAM
     preemptible  = false
     image_type   = "ubuntu_containerd"
-    machine_type = "custom-1-4096"
+    machine_type = "custom-6-12288"
     local_ssd_count = 0
     disk_size_gb    = 20
     disk_type       = "pd-standard"
@@ -135,7 +135,7 @@ resource "google_container_node_pool" "data-pool" {
     # 14 CPUs, 41GB of RAM
     preemptible  = false
     image_type   = "ubuntu_containerd"
-    machine_type = "custom-1-4096"
+    machine_type = "custom-14-41984"
     local_ssd_count = 0
     disk_size_gb    = 20
     disk_type       = "pd-standard"
@@ -178,7 +178,7 @@ resource "google_container_node_pool" "coord-pool" {
     # 6 CPUs, 22GB of RAM
     preemptible  = false
     image_type   = "ubuntu_containerd"
-    machine_type = "custom-1-4096"
+    machine_type = "custom-6-22528"
     local_ssd_count = 0
     disk_size_gb    = 20
     disk_type       = "pd-standard"
@@ -220,7 +220,7 @@ resource "google_container_node_pool" "kibana-pool" {
     # 4 CPUs, 13GB of RAM
     preemptible  = false
     image_type   = "ubuntu_containerd"
-    machine_type = "custom-1-4096"
+    machine_type = "custom-4-13312"
     local_ssd_count = 0
     disk_size_gb    = 20
     disk_type       = "pd-standard"
