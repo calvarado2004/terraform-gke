@@ -47,7 +47,7 @@ output "region" {
 #Enable communication from GKE pods to external instances, networks and services outside the Cluster.
 resource "google_compute_firewall" "gke-cluster-to-all-vms-on-network" {
   name    = "gke-cluster-k8s-to-all-vms-on-network"
-  network = google_compute_network.vpc-portal.id
+  network = google_compute_network.vpc-gke.id
 
   allow {
     protocol = "tcp"

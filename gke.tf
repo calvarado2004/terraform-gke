@@ -40,9 +40,12 @@ resource "google_container_cluster" "primary" {
 
   network                  = google_compute_network.vpc-gke.name
   subnetwork               = google_compute_subnetwork.subnet.name
-  cluster_ipv4_cidr        = var.cluster_ipv4_cidr
-  services_ipv4_cidr_block = var.services_ipv4_cidr_block
 
+  ip_allocation_policy {
+    cluster_ipv4_cidr_block        = var.cluster_ipv4_cidr
+    services_ipv4_cidr_block = var.services_ipv4_cidr_block
+  }
+  
   min_master_version = "1.17.13-gke.2001"	
 
   master_auth {
@@ -90,9 +93,9 @@ resource "google_container_node_pool" "master-pool" {
     # 6 CPUs, 12GB of RAM
     preemptible  = false
     image_type   = "ubuntu_containerd"
-    machine_type = "custom-6-12288"
+    machine_type = "custom-1-4096"
     local_ssd_count = 0
-    disk_size_gb    = 50
+    disk_size_gb    = 20
     disk_type       = "pd-standard"
     tags         = ["gke-node", "${var.cluster_name}-master"]
     metadata = {
@@ -132,9 +135,9 @@ resource "google_container_node_pool" "data-pool" {
     # 14 CPUs, 41GB of RAM
     preemptible  = false
     image_type   = "ubuntu_containerd"
-    machine_type = "custom-14-41984"
+    machine_type = "custom-1-4096"
     local_ssd_count = 0
-    disk_size_gb    = 50
+    disk_size_gb    = 20
     disk_type       = "pd-standard"
 
     tags         = ["gke-node", "${var.cluster_name}-data"]
@@ -175,9 +178,9 @@ resource "google_container_node_pool" "coord-pool" {
     # 6 CPUs, 22GB of RAM
     preemptible  = false
     image_type   = "ubuntu_containerd"
-    machine_type = "custom-6-22528"
+    machine_type = "custom-1-4096"
     local_ssd_count = 0
-    disk_size_gb    = 50
+    disk_size_gb    = 20
     disk_type       = "pd-standard"
     tags         = ["gke-node", "${var.cluster_name}-coord"]
     metadata = {
@@ -217,9 +220,9 @@ resource "google_container_node_pool" "kibana-pool" {
     # 4 CPUs, 13GB of RAM
     preemptible  = false
     image_type   = "ubuntu_containerd"
-    machine_type = "custom-4-13312"
+    machine_type = "custom-1-4096"
     local_ssd_count = 0
-    disk_size_gb    = 50
+    disk_size_gb    = 20
     disk_type       = "pd-standard"
     tags         = ["gke-node", "${var.cluster_name}-kibana"]
     metadata = {
