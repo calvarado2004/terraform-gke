@@ -40,9 +40,12 @@ resource "google_container_cluster" "primary" {
 
   network                  = google_compute_network.vpc-gke.name
   subnetwork               = google_compute_subnetwork.subnet.name
-  cluster_ipv4_cidr        = var.cluster_ipv4_cidr
-  services_ipv4_cidr_block = var.services_ipv4_cidr_block
 
+  ip_allocation_policy {
+    cluster_ipv4_cidr_block        = var.cluster_ipv4_cidr
+    services_ipv4_cidr_block = var.services_ipv4_cidr_block
+  }
+  
   min_master_version = "1.17.13-gke.2001"	
 
   master_auth {
