@@ -42,7 +42,7 @@ resource "google_container_cluster" "primary" {
   subnetwork               = google_compute_subnetwork.subnet.name
 
   ip_allocation_policy {
-    cluster_ipv4_cidr_block        = var.cluster_ipv4_cidr
+    cluster_ipv4_cidr_block  = var.cluster_ipv4_cidr
     services_ipv4_cidr_block = var.services_ipv4_cidr_block
   }
 
